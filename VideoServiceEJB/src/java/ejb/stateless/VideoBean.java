@@ -47,7 +47,7 @@ public class VideoBean implements VideoBeanLocal {
 
     @Override
     public List<Video> getVideos() {
-        List<Video> videosTmp = em.createNamedQuery("Font.findAll").getResultList();
+        List<Video> videosTmp = em.createNamedQuery("Video.findAll").getResultList();
         List<Video> videos = new ArrayList<>();
         for (Video video : videosTmp) {
             byte[] file = video.getFile();

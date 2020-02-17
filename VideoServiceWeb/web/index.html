@@ -4,8 +4,45 @@
         <title>Filmy - Strona główna</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/pulse/bootstrap.min.css" rel="stylesheet"/>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+        <script>
+            $(function () {
+                $("#header").load("header.html");
+            });
+            $.getJSON("IndexServlet", function (data) {
+                $.each(data, function (i, item) {
+                    $('<tr class="table-secondary">').appendTo($('#videos'))
+                            .append($('<td>').text(i + 1))
+                            .append($('<td>').text(item.title))
+                            .append($("<td><video style='height: 300px; width: 100%; display: block;' src='data:video/mp4;base64," + item.fileBase64 + "' controls></video>"))
+                            .append($("<td><a href='DownloadServlet?id=" + item.id + "'><i class='fa fa-download fa-2x'></i></a>"))
+                            .append($("<td><a href='UpdateServlet?id=" + item.id + "'><i class='fa fa-edit fa-2x'></i></a>"))
+                            .append($("<td><a href='DeleteServlet?id=" + item.id + "'><i class='fa fa-trash fa-2x'></i></a>"));
+                });
+            });
+        </script>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div id="header"></div>
+        <div class="table-responsive-lg">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-primary">
+                        <th scope="col">Lp.</th>
+                        <th scope="col">Tytuł</th>
+                        <th scope="col" style="width: 22%"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="videos">
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>
