@@ -20,7 +20,7 @@
                             .append($('<td>').text(item.title))
                             .append($("<td><video style='height: 300px; width: 100%; display: block;' src='data:video/mp4;base64," + item.fileBase64 + "' controls></video>"))
                             .append($("<td><a href='DownloadServlet?id=" + item.id + "'><i class='fa fa-download fa-2x'></i></a>"))
-                            .append($("<td><a href='UpdateServlet?id=" + item.id + "'><i class='fa fa-edit fa-2x'></i></a>"))
+                            .append($("<td><a href='edit.html?id=" + item.id + "'><i class='fa fa-edit fa-2x'></i></a>"))
                             .append($("<td><a href='DeleteServlet?id=" + item.id + "'><i class='fa fa-trash fa-2x'></i></a>"));
                 });
             });
