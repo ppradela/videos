@@ -23,3 +23,5 @@ hs_err_pid*
 /VideoServiceEJB/nbproject/private/
 /VideoServiceWeb/nbproject/private/
 /VideoServiceEJBRemote/nbproject/private/
+/VideoServiceEJB/build/
+/VideoServiceEJB/dist/
