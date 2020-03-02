@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Filmy - Strona główna</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/pulse/bootstrap.min.css" rel="stylesheet"/>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+        <link rel="icon" href="images/favicon.png">
+    </head>
+    <body>
+        <div id="header"></div>
+        <div class="row mt-5 mb-5 mr-auto ml-auto" id="videos"></div>
+        <script>
+            $(function () {
+                $("#header").load("header.html");
+            });
+
+            $.getJSON("IndexServlet", function (data) {
+                $.each(data, function (i, item) {
+                    var cardDiv = '<div class="card mb-3">';
+                    var header = "<h3 class='card-header' style='text-align: center'>" + item.title + "</h3>";
+                    var video = "<video style='height: 200px; width: 100%; display: block;' src='data:video/mp4;base64," + item.fileBase64 + "' controls></video>";
+                    var cardBody = "<div class='card-body' style='text-align: center'>"
+                            + "<a href='edit.html?id=" + item.id + "' class='card-link' style='float: left'><i class='fa fa-edit fa-3x'></i></a>"
+                            + "<a href='DownloadServlet?id=" + item.id + "' class='card-link'><i class='fa fa-download fa-3x'></i></a>"
+                            + "<a href='DeleteServlet?id=" + item.id + "' class='card-link' style='float: right'><i class='fa fa-trash fa-3x'></i></a></div>";
+                    $("<div class='col-lg-2 col-md-3 col-sm-6' id='video'>").appendTo($('#videos')).html(cardDiv + header + video + cardBody);
+                });
+            });
+        </script>
+    </body>
+</html>
