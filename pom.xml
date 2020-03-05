@@ -11,6 +11,6 @@
         <module>videos-ear</module>
         <module>videos-ejb</module>
         <module>videos-web</module>
-    <module>videos-soap</module>
-  </modules>
+        <module>videos-soap</module>
+    </modules>
 </project>
